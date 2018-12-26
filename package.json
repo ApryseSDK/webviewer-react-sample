@@ -7,11 +7,19 @@
     "react-dom": "^16.6.0",
     "react-scripts": "2.1.1"
   },
+  "devDependencies": {
+    "btoa": "^1.2.1",
+    "download": "^7.1.0",
+    "fs-extra": "^7.0.1"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "npm run download-webviewer && npm run add-license",
+    "download-webviewer": "node scripts/download-webviewer.js",
+    "add-license": "node scripts/add-license.js"
   },
   "eslintConfig": {
     "extends": "react-app"
