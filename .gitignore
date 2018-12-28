@@ -3,6 +3,7 @@
 # WebViewer
 public/lib
 public/license-key.js
+WebViewer.zip
 
 # dependencies
 /node_modules
