@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postinstall": "npx @pdftron/webviewer-downloader",
+    "postinstall": "npm run download-webviewer",
     "download-webviewer": "npx @pdftron/webviewer-downloader"
   },
   "eslintConfig": {
