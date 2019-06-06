@@ -10,11 +10,8 @@ class WebViewer extends Component {
   componentDidMount() {
     this.myWebViewer = new window.PDFTron.WebViewer({
       path: 'lib',
-      initialDoc: 'files/webviewer-demo-annotated.pdf',
-      l: atob(window.licenseKey)
+      initialDoc: 'files/webviewer-demo-annotated.pdf'
     }, this.viewer.current);
-    this.viewer.current.addEventListener('ready', this.readyHandler);
-    this.viewer.current.addEventListener('documentLoaded', this.documentLoadedHandler);
   }
 
   getInstance() {

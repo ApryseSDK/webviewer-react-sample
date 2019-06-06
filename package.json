@@ -8,7 +8,7 @@
     "react-scripts": "2.1.1"
   },
   "devDependencies": {
-    "@pdftron/webviewer-downloader": "^1.0.4",
+    "@pdftron/webviewer-downloader": "^1.0.7",
     "btoa": "^1.2.1",
     "download": "^7.1.0",
     "fs-extra": "^7.0.1"
@@ -19,8 +19,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "postinstall": "npx @pdftron/webviewer-downloader",
-    "add-license": "npx @pdftron/webviewer-downloader --license",
-    "download-webviewer": "npx @pdftron/webviewer-downloader --webviewer"
+    "download-webviewer": "npx @pdftron/webviewer-downloader"
   },
   "eslintConfig": {
     "extends": "react-app"
