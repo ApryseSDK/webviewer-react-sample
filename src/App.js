@@ -13,8 +13,8 @@ class App extends Component {
 
   componentDidMount() {
     window.WebViewer({
-      path: 'lib',
-      initialDoc: 'files/webviewer-demo-annotated.pdf'
+      path: '/lib',
+      initialDoc: '/files/webviewer-demo-annotated.pdf'
     }, this.viewer.current).then(instance => {
       // at this point, the viewer is 'ready'
       // call methods from instance, docViewer and annotManager as needed
