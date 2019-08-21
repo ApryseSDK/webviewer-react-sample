@@ -28,6 +28,8 @@ npm start
 
 Run `npm run build` to build the project. The build artifacts will be stored in the `build/` directory. See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+To test the build directory locally you can use [serve](https://www.npmjs.com/package/serve) or [http-server](https://www.npmjs.com/package/http-server). In case of serve, by default it strips the .html extension stripped from paths. We added serve.json configuration to disable cleanUrls option. 
+
 ## WebViewer APIs
 
 See [API documentation](https://www.pdftron.com/documentation/web/guides/ui/apis).
