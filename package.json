@@ -5,10 +5,10 @@
   "dependencies": {
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "@pdftron/webviewer": "^6.2.3"
   },
   "devDependencies": {
-    "@pdftron/webviewer-downloader": "^1.0.7",
     "btoa": "^1.2.1",
     "download": "^7.1.0",
     "fs-extra": "^7.0.1"
@@ -18,8 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postinstall": "npm run download-webviewer",
-    "download-webviewer": "npx @pdftron/webviewer-downloader"
+    "postinstall": "node tools/copy-webviewer-files.js"
   },
   "eslintConfig": {
     "extends": "react-app"
