@@ -1,74 +1,45 @@
-import React, { Component } from 'react';
+import React, { useRef, useEffect } from 'react';
+import WebViewer from '@pdftron/webviewer';
 import './App.css';
 
+const App = () => {
+  const viewer = useRef(null);
 
-class App extends Component {
-  constructor() {
-    super();
-    this.viewer = React.createRef();
-    this.docViewer = null;
-    this.annotManager = null;
-    this.instance = null;
-  }
+  // if using a class, equivalent of componentDidMount 
+  useEffect(() => {
+    WebViewer(
+      {
+        path: '/webviewer/lib',
+        initialDoc: '/files/pdftron_about.pdf',
+      },
+      viewer.current,
+    ).then((instance) => {
+      const { docViewer, Annotations } = instance;
+      const annotManager = docViewer.getAnnotationManager();
 
-  componentDidMount() {
-    window.WebViewer({
-      path: '/lib',
-      initialDoc: '/files/webviewer-demo-annotated.pdf'
-    }, this.viewer.current).then(instance => {
-      // at this point, the viewer is 'ready'
-      // call methods from instance, docViewer and annotManager as needed
-      this.instance = instance;
-      this.docViewer = instance.docViewer;
-      this.annotManager = instance.annotManager;
+      docViewer.on('documentLoaded', () => {
+        const rectangleAnnot = new Annotations.RectangleAnnotation();
+        rectangleAnnot.PageNumber = 1;
+        // values are in page coordinates with (0, 0) in the top left
+        rectangleAnnot.X = 100;
+        rectangleAnnot.Y = 150;
+        rectangleAnnot.Width = 200;
+        rectangleAnnot.Height = 50;
+        rectangleAnnot.Author = annotManager.getCurrentUser();
 
-      // you can also access major namespaces from the instance as follows:
-      // var Tools = instance.Tools;
-      // var Annotations = instance.Annotations;
-
-      // now you can access APIs through `this.instance`
-      this.instance.openElement('notesPanel')
-
-      // or listen to events from the viewer element
-      this.viewer.current.addEventListener('pageChanged', (e) => {
-        const [ pageNumber ] = e.detail;
-        console.log(`Current page is ${pageNumber}`);
+        annotManager.addAnnotation(rectangleAnnot);
+        // need to draw the annotation otherwise it won't show up until the page is refreshed
+        annotManager.redrawAnnotation(rectangleAnnot);
       });
+    });
+  }, []);
 
-      // or from the docViewer instance
-      this.docViewer.on('annotationsLoaded', () => {
-        console.log('annotations loaded');
-      });
-
-      this.docViewer.on('documentLoaded', this.wvDocumentLoadedHandler)
-    })
-  }
-
-
-  wvDocumentLoadedHandler = () => {
-    // call methods relating to the loaded document
-    const { Annotations } = this.instance;
-    const rectangle = new Annotations.RectangleAnnotation();
-    rectangle.PageNumber = 1;
-    rectangle.X = 100;
-    rectangle.Y = 100;
-    rectangle.Width = 250;
-    rectangle.Height = 250;
-    rectangle.StrokeThickness = 5;
-    rectangle.Author = this.annotManager.getCurrentUser();
-    this.annotManager.addAnnotation(rectangle);
-    this.annotManager.drawAnnotations(rectangle.PageNumber);
-    // see https://www.pdftron.com/api/web/WebViewer.html for the full list of low-level APIs
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <div className="header">React sample</div>
-        <div className="webviewer" ref={this.viewer}></div>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="App">
+      <div className="header">React sample</div>
+      <div className="webviewer" ref={viewer}></div>
+    </div>
+  );
+};
 
 export default App;

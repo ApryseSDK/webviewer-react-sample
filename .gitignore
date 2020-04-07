@@ -1,9 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # WebViewer
-public/lib
-public/license-key.js
-WebViewer.zip
+public/webviewer
 
 # dependencies
 /node_modules
