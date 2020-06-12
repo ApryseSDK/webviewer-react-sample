@@ -7,11 +7,28 @@
 
 .App .header {
   width: 100%;
-  height: 60px;
+  height: 100px;
   padding: 8px 8px 8px 16px;
   box-sizing: border-box;
   background: #00a5e4;
   font-size: 1.2em;
   line-height: 44px;
   color: white;
+}
+
+#scroll-view {
+  bottom: 0;
+  /* leave room for 100px header */
+  height: calc(100% - 100px);
+  width: 100%;
+  overflow: auto;
+}
+
+#viewer {
+  margin: auto;
+}
+
+.pageContainer {
+  border: 1px solid black;
+  position: relative;
 }

@@ -1,35 +1,37 @@
 import React, { useRef, useEffect } from 'react';
-import WebViewer from '@pdftron/webviewer';
 import './App.css';
 
 const App = () => {
   const viewer = useRef(null);
+  const scrollView = useRef(null);
 
-  // if using a class, equivalent of componentDidMount 
+  // if using a class, equivalent of componentDidMount
   useEffect(() => {
-    WebViewer(
-      {
-        path: '/webviewer/lib',
-        initialDoc: '/files/pdftron_about.pdf',
-      },
-      viewer.current,
-    ).then((instance) => {
-      const { docViewer, Annotations } = instance;
-      const annotManager = docViewer.getAnnotationManager();
+    const CoreControls = window.CoreControls;
+    CoreControls.setWorkerPath('/webviewer')
 
+    CoreControls.getDefaultPdfBackendType().then(backendType => {
+      //const licenseKey = 'Insert commercial license key here after purchase';
+      const workerTransportPromise = CoreControls.initPDFWorkerTransports(backendType, {});
+    
+      const docViewer = new CoreControls.DocumentViewer();
+      const partRetriever = new CoreControls.PartRetrievers.ExternalPdfPartRetriever('/files/pdftron_about.pdf');
+    
+      docViewer.setScrollViewElement(scrollView.current);
+      docViewer.setViewerElement(viewer.current);
+      docViewer.loadAsync(partRetriever, {
+        type: 'pdf',
+        backendType: backendType,
+        workerTransportPromise: workerTransportPromise
+      });
+    
+      docViewer.setOptions({ enableAnnotations: true });
+    
       docViewer.on('documentLoaded', () => {
-        const rectangleAnnot = new Annotations.RectangleAnnotation();
-        rectangleAnnot.PageNumber = 1;
-        // values are in page coordinates with (0, 0) in the top left
-        rectangleAnnot.X = 100;
-        rectangleAnnot.Y = 150;
-        rectangleAnnot.Width = 200;
-        rectangleAnnot.Height = 50;
-        rectangleAnnot.Author = annotManager.getCurrentUser();
-
-        annotManager.addAnnotation(rectangleAnnot);
-        // need to draw the annotation otherwise it won't show up until the page is refreshed
-        annotManager.redrawAnnotation(rectangleAnnot);
+        console.log('document loaded');
+    
+        // enable default tool for text and annotation selection
+        docViewer.setToolMode(docViewer.getTool('AnnotationEdit'));
       });
     });
   }, []);
@@ -37,7 +39,9 @@ const App = () => {
   return (
     <div className="App">
       <div className="header">React sample</div>
-      <div className="webviewer" ref={viewer}></div>
+      <div id="scroll-view" ref={scrollView}>
+        <div id="viewer" ref={viewer}></div>
+      </div>
     </div>
   );
 };
