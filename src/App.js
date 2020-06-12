@@ -11,13 +11,10 @@ const App = () => {
     CoreControls.setWorkerPath('/webviewer');
 
     const docViewer = new CoreControls.DocumentViewer();
-
-    CoreControls.createDocument('/files/pdftron_about.pdf').then(doc => {
-      docViewer.setScrollViewElement(scrollView.current);
-      docViewer.setViewerElement(viewer.current);
-      docViewer.setOptions({ enableAnnotations: true });
-      docViewer.loadDocument(doc);
-    });
+    docViewer.setScrollViewElement(scrollView.current);
+    docViewer.setViewerElement(viewer.current);
+    docViewer.setOptions({ enableAnnotations: true });
+    docViewer.loadDocument('/files/pdftron_about.pdf');
 
     docViewer.on('documentLoaded', () => {
       console.log('document loaded');
