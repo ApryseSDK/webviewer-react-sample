@@ -8,31 +8,21 @@ const App = () => {
   // if using a class, equivalent of componentDidMount
   useEffect(() => {
     const CoreControls = window.CoreControls;
-    CoreControls.setWorkerPath('/webviewer')
+    CoreControls.setWorkerPath('/webviewer');
 
-    CoreControls.getDefaultPdfBackendType().then(backendType => {
-      //const licenseKey = 'Insert commercial license key here after purchase';
-      const workerTransportPromise = CoreControls.initPDFWorkerTransports(backendType, {});
-    
-      const docViewer = new CoreControls.DocumentViewer();
-      const partRetriever = new CoreControls.PartRetrievers.ExternalPdfPartRetriever('/files/pdftron_about.pdf');
-    
+    const docViewer = new CoreControls.DocumentViewer();
+
+    CoreControls.createDocument('/files/pdftron_about.pdf').then(doc => {
       docViewer.setScrollViewElement(scrollView.current);
       docViewer.setViewerElement(viewer.current);
-      docViewer.loadAsync(partRetriever, {
-        type: 'pdf',
-        backendType: backendType,
-        workerTransportPromise: workerTransportPromise
-      });
-    
       docViewer.setOptions({ enableAnnotations: true });
-    
-      docViewer.on('documentLoaded', () => {
-        console.log('document loaded');
-    
-        // enable default tool for text and annotation selection
-        docViewer.setToolMode(docViewer.getTool('AnnotationEdit'));
-      });
+      docViewer.loadDocument(doc);
+    });
+
+    docViewer.on('documentLoaded', () => {
+      console.log('document loaded');
+      // enable default tool for text and annotation selection
+      docViewer.setToolMode(docViewer.getTool('AnnotationEdit'));
     });
   }, []);
 
