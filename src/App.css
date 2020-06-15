@@ -19,7 +19,7 @@
 #scroll-view {
   bottom: 0;
   /* leave room for 100px header */
-  height: calc(100% - 100px);
+  height: 100%;
   width: 100%;
   overflow: auto;
 }
@@ -29,6 +29,7 @@
 }
 
 .pageContainer {
-  border: 1px solid black;
+  border: 1px solid #ececec;
+  box-shadow: 5px 10px 18px #ececec;
   position: relative;
 }
