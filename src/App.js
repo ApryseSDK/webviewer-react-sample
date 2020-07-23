@@ -10,7 +10,7 @@ const App = () => {
     WebViewer(
       {
         path: '/webviewer/lib',
-        initialDoc: '/files/pdftron_about.pdf',
+        initialDoc: '/files/PDFTRON_about.pdf',
       },
       viewer.current,
     ).then((instance) => {
