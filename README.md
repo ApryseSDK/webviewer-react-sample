@@ -4,7 +4,7 @@
 
 ![WebViewer UI](https://www.pdftron.com/downloads/pl/webviewer-ui.png)
 
-This repo is specifically designed for any users interested in integrating WebViewer into React project. This project was generated with [Create React App](https://github.com/facebook/create-react-app). See [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started) for more information.
+This repo is specifically designed for any users interested in integrating WebViewer into React project. You can watch [a video here](https://youtu.be/bVhWXuLSL0k) to help you get started.
 
 ## Initial setup
 
