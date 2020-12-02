@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@pdftron/webviewer": "^7.0.0",
+    "@pdftron/webviewer-video": "^3.2.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
-    "react-scripts": "2.1.1",
-    "@pdftron/webviewer": "^7.0.0"
+    "react-scripts": "2.1.1"
   },
   "devDependencies": {
     "btoa": "^1.2.1",
