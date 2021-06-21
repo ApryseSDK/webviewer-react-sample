@@ -29,6 +29,7 @@
     "pageSet": "페이지 설정",
     "print": "인쇄",
     "name": "이름",
+    "rename": "이름 바꾸기",
     "ok": "확인",
     "rotate": "회전",
     "rotateClockwise": "시계 방향으로",
@@ -174,7 +175,8 @@
     "enterReplacementText": "바꿀 텍스트를 입력하십시오",
     "sortBy": "정렬 기준",
     "emptyCustomStampInput": "스탬프 텍스트는 비워 둘 수 없습니다",
-    "unpostedComment": "게시되지 않은 댓글"
+    "unpostedComment": "게시되지 않은 댓글",
+    "untitled": "제목 없음"
   },
   "option": {
     "notesOrder": {
@@ -209,6 +211,10 @@
     "documentControls": {
       "placeholder": "선택할 페이지를 입력하십시오 (예 : 2, 5-9)."
     },
+    "outlineControls": {
+      "add": "아이템 추가",
+      "reorder": "재 주문"
+    },
     "layout": {
       "cover": "커버",
       "double": "더블",
@@ -217,7 +223,12 @@
     "notesPanel": {
       "separator": {
         "today": "오늘",
-        "yesterday": "어제"
+        "yesterday": "어제",
+        "unknown": "알 수 없는"
+      },
+      "noteContent": {
+        "noName": "(이름 없음)",
+        "noDate": "(날짜 없음)"
       }
     },
     "pageTransition": {
@@ -269,6 +280,7 @@
     },
     "filterAnnotModal": {
       "commentBy": "의 댓글",
+      "includeReplies": "답글 포함",
       "types": "종류"
     },
     "status": {

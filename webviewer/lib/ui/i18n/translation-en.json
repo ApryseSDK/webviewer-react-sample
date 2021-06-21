@@ -29,6 +29,7 @@
     "pageSet": "Set page",
     "print": "Print",
     "name": "Name",
+    "rename": "Rename",
     "ok": "OK",
     "rotate": "Page Orientation",
     "rotateClockwise": "Rotate Clockwise",
@@ -174,7 +175,8 @@
     "enterReplacementText": "Enter the text you want to replace",
     "sortBy": "Sort by",
     "emptyCustomStampInput": "Stamp text cannot be empty",
-    "unpostedComment": "Unposted Comment"
+    "unpostedComment": "Unposted Comment",
+    "untitled": "Untitled"
   },
   "option": {
     "notesOrder": {
@@ -209,6 +211,10 @@
     "documentControls": {
       "placeholder": "Pages to select i.e. 2, 5-9"
     },
+    "outlineControls": {
+      "add": "Add item",
+      "reorder": "Reorder"
+    },
     "layout": {
       "cover": "Cover Facing Page",
       "double": "Double Page",
@@ -217,7 +223,12 @@
     "notesPanel": {
       "separator": {
         "today": "Today",
-        "yesterday": "Yesterday"
+        "yesterday": "Yesterday",
+        "unknown": "Unknown"
+      },
+      "noteContent": {
+        "noName": "(no name)",
+        "noDate": "(no date)"
       }
     },
     "pageTransition": {
@@ -269,6 +280,7 @@
     },
     "filterAnnotModal": {
       "commentBy": "Comment by",
+      "includeReplies": "Include Replies",
       "types": "Types"
     },
     "status": {
