@@ -7,7 +7,7 @@
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-scripts": "2.1.1",
-    "@pdftron/webviewer": "^7.0.0"
+    "@pdftron/webviewer": "^8.0.0"
   },
   "devDependencies": {
     "btoa": "^1.2.1",
