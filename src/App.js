@@ -8,7 +8,6 @@ const App = () => {
  
   return (
     <div className="App">
-      <div className="header">React sample</div>
       {fileType === '' ? <div>
         <button onClick={() => setFileType('pdf')}>Open Documents</button>
         <button onClick={() => setFileType('video')}>Open Video</button>

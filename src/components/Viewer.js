@@ -33,7 +33,7 @@ const Viewer = () => {
     });
   }, []);
 
-  return <div className="webviewer" ref={viewer}></div>;
+  return <div className="webviewer" style={{margin:0}} ref={viewer}></div>;
 };
 
 export default Viewer;
