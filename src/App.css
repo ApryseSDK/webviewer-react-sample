@@ -15,3 +15,16 @@
   line-height: 44px;
   color: white;
 }
+
+.sigPad {
+  width: 100%;
+  height: 100%;
+}
+
+
+.sigContainer {
+  width: 80%;
+  height: 80%;
+  margin: 0 auto;
+  background-color: #fff;
+}
