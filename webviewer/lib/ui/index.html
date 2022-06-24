@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
   <link rel="icon" href="assets/pdftron.ico">
   <link rel="stylesheet" href="./style.css">
   <title>WebViewer UI</title>
@@ -15,7 +16,7 @@
     <div id="line-connector-root"></div>
   </div>
   <div id="outline-edit-popup-portal"></div>
-  <script src="../core/CoreControls.js"></script>
+  <script src="../core/webviewer-core.min.js"></script>
   <script src="webviewer-ui.min.js"></script>
 </body>
 
