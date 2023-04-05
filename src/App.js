@@ -5,12 +5,12 @@ import './App.css';
 const App = () => {
   const viewer = useRef(null);
 
-  // if using a class, equivalent of componentDidMount 
+  // if using a class, equivalent of componentDidMount
   useEffect(() => {
     WebViewer(
       {
         path: '/webviewer/lib',
-        initialDoc: '/files/PDFTRON_about.pdf',
+        initialDoc: '/files/receipt.pdf',
       },
       viewer.current,
     ).then((instance) => {
