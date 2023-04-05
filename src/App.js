@@ -14,7 +14,6 @@ const App = () => {
       },
       viewer.current,
     ).then((instance) => {
-      console.time('v10build');
       instance.Core.documentViewer.addEventListener('documentLoaded', () => {
         console.timeEnd('v10build');
       });
