@@ -14,22 +14,22 @@ const App = () => {
       },
       viewer.current,
     ).then((instance) => {
-      const { documentViewer, annotationManager, Annotations } = instance.Core;
+      instance.UI.enableFeatures([instance.UI.Feature.FilePicker]);
 
-      documentViewer.addEventListener('documentLoaded', () => {
-        const rectangleAnnot = new Annotations.RectangleAnnotation({
-          PageNumber: 1,
-          // values are in page coordinates with (0, 0) in the top left
-          X: 100,
-          Y: 150,
-          Width: 200,
-          Height: 50,
-          Author: annotationManager.getCurrentUser()
-        });
-
-        annotationManager.addAnnotation(rectangleAnnot);
-        // need to draw the annotation otherwise it won't show up until the page is refreshed
-        annotationManager.redrawAnnotation(rectangleAnnot);
+      const { documentViewer } = instance.Core;
+      documentViewer.addEventListener('documentLoaded', async () => {
+        console.log('Document Loaded');
+        const pages = documentViewer.getPageCount();
+        const newRotation = 1;
+        for (let pageNumber = 1; pageNumber <= pages; pageNumber++) {
+          try {
+            console.log('page: ', pageNumber);
+            documentViewer.setRotation(2, pageNumber);
+            documentViewer.refreshPage(pageNumber);
+          } catch (e) {
+            console.log(`Failed to rotate page ${pageNumber}  to ${newRotation}`, e);
+          }
+        }
       });
     });
   }, []);
