@@ -6,9 +6,24 @@
 
 This repo is specifically designed for any users interested in integrating WebViewer into React project. You can watch [a video here](https://youtu.be/bVhWXuLSL0k) to help you get started.
 
-## Demo
+## Demos
 
-You can explore all of the functionality in our [showcase](https://www.pdftron.com/webviewer/demo/).
+- [Customizable out-of-the-box UI](https://showcase.apryse.com/toolbar-customization)
+- [PDF Viewer](https://showcase.apryse.com/)
+- [DOCX Editor](https://showcase.apryse.com/office-editor)
+- [Annotation & Markup](https://showcase.apryse.com/annotation-permissions)
+- [Generate PDFs from DOCX template](https://showcase.apryse.com/office-template-fill)
+- [Digital Signatures](https://showcase.apryse.com/digital-signatures)
+- [PDF Text Editing](https://showcase.apryse.com/pdf-editing)
+- [Page Manipulation](https://showcase.apryse.com/pdf-page-manipulation-api)
+- [Redaction](https://showcase.apryse.com/redaction)
+- [Form Building](https://showcase.apryse.com/pdf-form-build)
+- [Annotate Videos](https://showcase.apryse.com/annotate-video-frames)
+- [More](https://showcase.apryse.com/)
+
+## Trial
+
+WebViewer comes with a 7-day trial without any feature limitations or trial key needed. To extend the trial, you can obtain the trial key by [signing-up](https://dev.apryse.com/) on our [developer portal](https://dev.apryse.com/).
 
 ## Initial setup
 

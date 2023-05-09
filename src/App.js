@@ -11,6 +11,7 @@ const App = () => {
       {
         path: '/webviewer/lib',
         initialDoc: '/files/PDFTRON_about.pdf',
+        licenseKey: 'your_license_key'  // sign up to get a free trial key at https://dev.apryse.com
       },
       viewer.current,
     ).then((instance) => {
