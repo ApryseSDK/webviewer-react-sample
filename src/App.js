@@ -38,7 +38,7 @@ const App = () => {
       const { documentViewer } = instance.Core;
 
       documentViewer.addEventListener('documentLoaded', async () => {
-        await documentViewer.getDocument().documentCompletePromise();
+        await documentViewer.getDocument().getDocumentCompletePromise();
         documentViewer.updateView();
 
         // const doc = documentViewer.getDocument();
