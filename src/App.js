@@ -9,13 +9,17 @@ const App = () => {
   useEffect(() => {
     WebViewer(
       {
-        path: '/webviewer/lib',
-        initialDoc: '/files/PDFTRON_about.pdf',
+        path: 'webviewer/lib',
+        config: 'config.js',
+        initialDoc: 'https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf',
         licenseKey: 'your_license_key'  // sign up to get a free trial key at https://dev.apryse.com
       },
       viewer.current,
     ).then((instance) => {
       const { documentViewer, annotationManager, Annotations } = instance.Core;
+
+      instance.UI.disableElements(['downloadButton']);
+      instance.UI.disableElements(['printButton']);
 
       documentViewer.addEventListener('documentLoaded', () => {
         const rectangleAnnot = new Annotations.RectangleAnnotation({
