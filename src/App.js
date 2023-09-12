@@ -1,43 +1,48 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import WebViewer from '@pdftron/webviewer';
 import './App.css';
 
 const App = () => {
   const viewer = useRef(null);
+  const [instance, setInstance] = useState();
+  const [doc, setDoc] = useState();
+  const [annotationManager, setAnnotationManager] = useState();
 
   // if using a class, equivalent of componentDidMount 
   useEffect(() => {
     WebViewer(
       {
         path: '/webviewer/lib',
-        initialDoc: '/files/PDFTRON_about.pdf',
-        licenseKey: 'your_license_key'  // sign up to get a free trial key at https://dev.apryse.com
       },
       viewer.current,
     ).then((instance) => {
-      const { documentViewer, annotationManager, Annotations } = instance.Core;
-
-      documentViewer.addEventListener('documentLoaded', () => {
-        const rectangleAnnot = new Annotations.RectangleAnnotation({
-          PageNumber: 1,
-          // values are in page coordinates with (0, 0) in the top left
-          X: 100,
-          Y: 150,
-          Width: 200,
-          Height: 50,
-          Author: annotationManager.getCurrentUser()
-        });
-
-        annotationManager.addAnnotation(rectangleAnnot);
-        // need to draw the annotation otherwise it won't show up until the page is refreshed
-        annotationManager.redrawAnnotation(rectangleAnnot);
-      });
+      setInstance(instance);
+      setAnnotationManager(instance.Core.annotationManager);
     });
+
+    document.getElementById('file-picker').onchange = (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        setDoc(file);
+      }
+    };
   }, []);
+
+  useEffect(() => {
+    if (instance && doc) {
+      instance.UI.loadDocument(doc);
+      annotationManager.addEventListener("annotationChanged", () => {
+        console.log("ANNOTATION CHANGED");
+        // Everytime this useEffect runs, the number of this line in the console corresponds with the number of annotations in the newly loaded document.
+        // Load a document with no annotation will not have this line printed.
+      })
+    }
+  }, [instance, doc]);
 
   return (
     <div className="App">
       <div className="header">React sample</div>
+      <input type="file" id="file-picker"></input>
       <div className="webviewer" ref={viewer}></div>
     </div>
   );
