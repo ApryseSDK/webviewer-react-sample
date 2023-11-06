@@ -29,6 +29,8 @@ WebViewer comes with a 7-day trial without any feature limitations or trial key 
 
 Before you begin, make sure your development environment includes [Node.js](https://nodejs.org/en/).
 
+This sample requires Node version 18.0.0 or higher. To check your version, run `node -v` in a terminal/console window.
+
 ## Install
 
 ```
