@@ -6,6 +6,7 @@ body,
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
 }
 
 .webviewer {
@@ -13,4 +14,6 @@ body,
   margin: 8px;
   -webkit-box-shadow: 1px 1px 10px #999;
   box-shadow: 1px 1px 10px #999;
+  box-sizing: border-box;
+  height: calc(100% - 76px);
 }
