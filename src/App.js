@@ -369,7 +369,7 @@ const App = () => {
 
       const bottomHeader = new instance.UI.Components.ModularHeader({
         dataElement: 'bottomHeader-23ds',
-        placement: 'right',
+        placement: 'bottom',
         position: 'center',
         float: true,
         style: {
