@@ -7,7 +7,7 @@
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-scripts": "2.1.1",
-    "@pdftron/webviewer": "^10.0.0"
+    "@pdftron/webviewer": "10.6.0-20231115"
   },
   "devDependencies": {
     "btoa": "^1.2.1",
@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "PUBLIC_URL=/ react-scripts  build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "postinstall": "node tools/copy-webviewer-files.js",
