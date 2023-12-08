@@ -7,7 +7,7 @@
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-scripts": "2.1.1",
-    "@pdftron/webviewer": "^10.0.0"
+    "@pdftron/webviewer": "10.4.0"
   },
   "devDependencies": {
     "btoa": "^1.2.1",
@@ -16,7 +16,7 @@
     "gh-pages": "^3.2.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "export NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
