@@ -2,8 +2,6 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const util = require('util');
-const brotli = require('iltorb');
-
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -14,16 +12,9 @@ app.get('*', (req, res, next) => {
     const read = util.promisify(fs.readFile);
     read(filePath)
       .then((content) => {
-        const options = { mode: 0 };
-        brotli.compress(content, options, (err, result) => {
-          if (err) {
-            next(err);
-          } else {
             res.set('Content-Encoding', 'br');
             res.set('Content-Type', 'application/octet-stream');
             res.send(content);
-          }
-        });
       })
       .catch(next);
   } else {
