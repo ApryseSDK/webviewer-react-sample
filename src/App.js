@@ -1,43 +1,57 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import WebViewer from '@pdftron/webviewer';
 import './App.css';
 
 const App = () => {
   const viewer = useRef(null);
+  const [instance, setInstance] = useState(null);
+  const [isEditingMode, setIsEditingMode] = useState(false)
 
-  // if using a class, equivalent of componentDidMount 
   useEffect(() => {
-    WebViewer(
+    WebViewer.Iframe(
       {
         path: '/webviewer/lib',
-        initialDoc: '/files/PDFTRON_about.pdf',
-        licenseKey: 'your_license_key'  // sign up to get a free trial key at https://dev.apryse.com
+        initialDoc: '/files/sample_pdf.pdf',
+        licenseKey: 'your_license_key',
       },
       viewer.current,
     ).then((instance) => {
-      const { documentViewer, annotationManager, Annotations } = instance.Core;
-
-      documentViewer.addEventListener('documentLoaded', () => {
-        const rectangleAnnot = new Annotations.RectangleAnnotation({
-          PageNumber: 1,
-          // values are in page coordinates with (0, 0) in the top left
-          X: 100,
-          Y: 150,
-          Width: 200,
-          Height: 50,
-          Author: annotationManager.getCurrentUser()
-        });
-
-        annotationManager.addAnnotation(rectangleAnnot);
-        // need to draw the annotation otherwise it won't show up until the page is refreshed
-        annotationManager.redrawAnnotation(rectangleAnnot);
-      });
+      setInstance(instance);
     });
   }, []);
 
+  const enableCustomReadOnlyMode = useCallback(
+    (isReadOnlyMode = !isEditingMode) => {
+      const { annotationManager } = instance.Core;
+      const fieldManager = annotationManager.getFieldManager();
+
+      fieldManager.forEachField(field => {
+        field.flags.set("ReadOnly", isReadOnlyMode);
+      });
+    },
+    [instance, isEditingMode]
+  );
+
+  useEffect(() => {
+    if (instance) {
+      const { documentViewer } = instance.Core;
+
+      // For the first time when pdf loads
+      documentViewer.addEventListener("annotationsLoaded", enableCustomReadOnlyMode);
+      // For the subsequent loads when switched between edit and read-only modes.
+      enableCustomReadOnlyMode();
+
+      return () => {
+        documentViewer.removeEventListener("annotationsLoaded", enableCustomReadOnlyMode);
+      };
+    }
+
+    return undefined;
+  }, [instance, enableCustomReadOnlyMode]);
+
   return (
     <div className="App">
-      <div className="header">React sample</div>
+      <div className="header"><button onClick={() => setIsEditingMode(isEditingMode => !isEditingMode)}>{isEditingMode ? 'Disable Editing' : 'Enable Editing'}</button></div>
       <div className="webviewer" ref={viewer}></div>
     </div>
   );
