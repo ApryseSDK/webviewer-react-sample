@@ -42,8 +42,8 @@ const scale = Math.min(scaleX, scaleY);
 
 export const prepareCanvasToAppendAnnotationImage = async ({  signatureWidget, instance }) => {
   const box = {
-      width: 500 ?? signatureWidget?.Width,
-      height: 500 ?? signatureWidget?.Height,
+      width: 500, /* signatureWidget?.Width */
+      height: 500, /*  signatureWidget?.Height. commented temporarily, as I am yet to figure out how I can scale the ink annotation path points such that they would fit within box dimensions.*/
   };
 
   const { canvas, ctx } = createCanvas({
