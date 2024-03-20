@@ -6,12 +6,10 @@ import {
   Button,
 } from 'gestalt';
 
-const dragOver = e => {
-  e.preventDefault();
-  return false;
-};
+
 
 const App = () => {
+  let isOverlapping = false;
   const viewer = useRef(null);
 
   const addField = useCallback((type, point = {}, instance, name = '', value = '', flag = {},) => {
@@ -68,13 +66,30 @@ const App = () => {
     annotationManager.selectAnnotation(textAnnot);
   }, []);
 
+  const dragOver = (e, _instance) => {
+    console.log('dragover');
+    const { annotationManager } = _instance.Core;
+    const annotation = annotationManager.getAnnotationByMouseEvent(e);
+    isOverlapping = false;
+    if (annotation) {
+      console.log(annotation);
+      isOverlapping = true;
+    }
+    e.preventDefault();
+    return false;
+  };
+
   const drop = useCallback((e, instance) => {
+    console.log('drop');
     const { documentViewer } = instance.Core;
     const scrollElement = documentViewer.getScrollViewElement();
     const scrollLeft = scrollElement.scrollLeft || 0;
     const scrollTop = scrollElement.scrollTop || 0;
 
-    addField('SIGNATURE', { x: e.pageX + scrollLeft, y: e.pageY + scrollTop }, instance);
+    console.log(isOverlapping);
+    if (!isOverlapping) {
+      addField('SIGNATURE', { x: e.pageX + scrollLeft, y: e.pageY + scrollTop }, instance);
+    }
 
     return false;
   }, [addField]);
@@ -91,7 +106,9 @@ const App = () => {
       const { iframeWindow } = _instance.UI;
 
       const iframeDoc = iframeWindow.document.body;
-      iframeDoc.addEventListener('dragover', dragOver);
+      iframeDoc.addEventListener('dragover', e => {
+        dragOver(e, _instance)
+      });
       iframeDoc.addEventListener('drop', e => {
         drop(e, _instance);
       });
@@ -99,13 +116,14 @@ const App = () => {
     const { documentViewer, annotationManager } = _instance.Core;
       documentViewer.addEventListener('mouseMove',(e)=>{
         const annotUnderMouse = annotationManager.getAnnotationByMouseEvent(e);
-        console.log({ annotUnderMouse });
+        // console.log({ annotUnderMouse });
       });
 
     });
   }, [drop]);
 
   const dragStart = e => {
+    console.log('dragstart');
     e.target.style.opacity = 0.5;
     const copy = e.target.cloneNode(true);
     copy.id = 'form-build-drag-image-copy';
@@ -116,6 +134,7 @@ const App = () => {
   };
 
   const dragEnd = (e) => {
+    console.log('dragend');
     e.target.style.opacity = 1;
     document.body.removeChild(
       document.getElementById('form-build-drag-image-copy'),
