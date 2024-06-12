@@ -4,41 +4,48 @@ import './App.css';
 
 const App = () => {
   const viewer = useRef(null);
+  const selectedAnnotationsRef = useRef(null);
+  const instanceRef = useRef(null);
 
-  // if using a class, equivalent of componentDidMount 
+
   useEffect(() => {
-    // If you prefer to use the Iframe implementation, you can replace this line with: WebViewer.Iframe(...)
-    WebViewer.WebComponent(
+    WebViewer(
       {
         path: '/webviewer/lib',
         initialDoc: '/files/PDFTRON_about.pdf',
-        licenseKey: 'your_license_key',  // sign up to get a free trial key at https://dev.apryse.com
+        licenseKey: 'your_license_key',
+        isReadOnly: false,
       },
       viewer.current,
     ).then((instance) => {
-      const { documentViewer, annotationManager, Annotations } = instance.Core;
+      const { annotationManager } = instance.Core;
+      const handleAnnotationSelected = annotations => {
+        selectedAnnotationsRef.current = annotations;
+      };
+      instance.UI.enableFeatures([instance.UI.Feature.ContentEdit]);
 
-      documentViewer.addEventListener('documentLoaded', () => {
-        const rectangleAnnot = new Annotations.RectangleAnnotation({
-          PageNumber: 1,
-          // values are in page coordinates with (0, 0) in the top left
-          X: 100,
-          Y: 150,
-          Width: 200,
-          Height: 50,
-          Author: annotationManager.getCurrentUser()
-        });
-
-        annotationManager.addAnnotation(rectangleAnnot);
-        // need to draw the annotation otherwise it won't show up until the page is refreshed
-        annotationManager.redrawAnnotation(rectangleAnnot);
-      });
+      annotationManager.addEventListener("annotationSelected", handleAnnotationSelected);
+      instanceRef.current = instance;
     });
   }, []);
 
+  const onStopEditing = async () => {
+    const { documentViewer } = instanceRef.current.Core;
+
+    const contentEditManager = await documentViewer.getContentEditManager();
+    selectedAnnotationsRef.current.forEach(annotation => {
+      const contentBoxId = annotation.getCustomData("contentEditBoxId");
+      const box = contentEditManager.getContentBoxById(contentBoxId);
+
+      box.stopContentEditing();
+    });
+  }
+
   return (
     <div className="App">
-      <div className="header">React sample</div>
+      <div className="header">React sample
+        <button onClick={onStopEditing}>Stop editing and save</button>
+      </div>
       <div className="webviewer" ref={viewer}></div>
     </div>
   );
