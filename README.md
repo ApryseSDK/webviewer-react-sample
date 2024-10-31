@@ -30,7 +30,7 @@ You can obtain the trial key by signing-up on our [developer portal](https://dev
 
 Before you begin, make sure your development environment includes [Node.js](https://nodejs.org/en/).
 
-This sample requires Node version 18.0.0 or higher. To check your version, run `node -v` in a terminal/console window.
+This sample requires Node version 20. To check your version, run `node -v` in a terminal/console window.
 
 In order to set the license key, you will need to set the string in the WebViewer sample. One such way is by passing it into the constructor of the WebViewer: https://docs.apryse.com/documentation/web/faq/add-license/#passing-into-constructor
 
