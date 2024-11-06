@@ -1,6 +1,6 @@
 # WebViewer - React sample
 
-[WebViewer](https://www.pdftron.com/documentation/web/) is a powerful JavaScript-based PDF Library that's part of the [PDFTron PDF SDK](https://www.pdftron.com). It provides a slick out-of-the-box responsive UI that interacts with the core library to view, annotate and manipulate PDFs that can be embedded into any web project.
+[WebViewer](https://docs.apryse.com/documentation/web/) is a powerful JavaScript-based PDF Library that is part of the [Apryse SDK](https://apryse.com/). It provides a slick out-of-the-box responsive UI that interacts with the core library to view, annotate and manipulate PDFs that can be embedded into web projects.
 
 ![WebViewer UI](https://www.pdftron.com/downloads/pl/webviewer-ui.png)
 
@@ -44,7 +44,7 @@ Follow the steps below to set the license key in this sample:
 ## Install
 
 ```
-git clone https://github.com/PDFTron/webviewer-react-sample.git
+git clone https://github.com/ApryseSDK/webviewer-react-sample.git
 cd webviewer-react-sample
 npm install
 ```
@@ -78,7 +78,7 @@ WebViewer(
 
 ## WebViewer APIs
 
-See [API documentation](https://www.pdftron.com/documentation/web/guides/ui/apis).
+See [API documentation](https://docs.apryse.com/documentation/web/guides/full-api/).
 
 ## Contributing
 
