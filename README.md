@@ -78,7 +78,7 @@ WebViewer(
 
 ## WebViewer APIs
 
-See [API documentation](https://docs.apryse.com/documentation/web/guides/full-api/).
+See [API documentation](https://docs.apryse.com/api/web/WebViewerInstance.html).
 
 ## Contributing
 
