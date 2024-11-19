@@ -20,7 +20,7 @@ public/webviewer
 .env.development.local
 .env.test.local
 .env.production.local
-package-lock.json
+# package-lock.json
 /public/assets/webviewer/core
 /public/assets/webviewer/ui
 
