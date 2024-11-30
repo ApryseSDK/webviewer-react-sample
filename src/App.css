@@ -2,7 +2,6 @@
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
 }
 
 .App .header {
@@ -14,4 +13,8 @@
   font-size: 1.2em;
   line-height: 44px;
   color: white;
+}
+
+.webviewer {
+  width: 70%
 }
