@@ -2,6 +2,7 @@
   "name": "webviewer-react-sample",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@pdftron/webviewer": "^11.0.0",
     "@testing-library/jest-dom": "^6.6.3",
