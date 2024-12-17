@@ -20,7 +20,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
-    "postinstall": "node tools/copy-webviewer-files.js"
+    "postinstall": "node tools/copy-webviewer-files.cjs"
   },
   "eslintConfig": {
     "extends": [
